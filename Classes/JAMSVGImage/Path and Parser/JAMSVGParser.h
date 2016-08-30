@@ -12,9 +12,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class JAMStyledBezierPath;
+
 /** JAMSVGParser uses NSXMLParser to parse SVG documents and extract graphic data. The end result is an array of JAMStyledBezierPaths that are used by JAMSVGImage and JAMSVGImageView to draw these resolution-independent vector graphics. */
 @interface JAMSVGParser : NSObject
 
+@property (nonatomic) NSMutableDictionary<NSString *, NSMutableArray<JAMStyledBezierPath*>*> *classDict;
+@property (nonatomic) NSMutableDictionary<NSString *, JAMStyledBezierPath*> *pathsDict;
 /** The array of JAMStyledBezierPaths. */
 @property (nonatomic) NSMutableArray *paths;
 /** The viewBox from the SVG document. This is used to configure the JAMSVGImage size property. */

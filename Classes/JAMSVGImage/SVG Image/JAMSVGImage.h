@@ -11,6 +11,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "JAMStyledBezierPath.h"
 
 /** JAMSVGImage class is used for drawing resolution-independent vector graphics from an SVG file or data. Use JAMSVGImage to draw in any graphics context (most likely your custom view's drawRect: method) or, use it to populate a JAMSVGImageView and enjoy resolution-independent graphics at any size anywhere in your app! */
 @interface JAMSVGImage : NSObject <NSCoding>
@@ -20,6 +21,9 @@
 
 /** Scale at which the SVG image will be drawn. Default is 1.0. */
 @property (nonatomic) CGFloat scale;
+
+@property (nonatomic) NSMutableDictionary<NSString *, NSMutableArray<JAMStyledBezierPath*>*> *classDict;
+@property (nonatomic) NSMutableDictionary<NSString *, JAMStyledBezierPath*> *pathsDict;
 
 /** Returns a CGImageRef or UIImage of the SVG image at the current scale. */
 - (CGImageRef)CGImage;

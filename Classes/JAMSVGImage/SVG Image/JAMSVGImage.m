@@ -12,7 +12,6 @@
 
 #import "JAMSVGImage.h"
 #import "JAMSVGParser.h"
-#import "JAMStyledBezierPath.h"
 
 @interface JAMSVGImage ()
 @property (nonatomic, readwrite) CGSize size;
@@ -88,6 +87,8 @@ static NSCache *imageCache = nil;
     
     [parser parseSVGDocument];
     image.styledPaths = parser.paths;
+    image.pathsDict = parser.pathsDict;
+    image.classDict = parser.classDict;
     image.viewBox = parser.viewBox;
     image.scale = 1;
     return image;
@@ -101,6 +102,8 @@ static NSCache *imageCache = nil;
     
     [parser parseSVGDocument];
     image.styledPaths = parser.paths;
+    image.pathsDict = parser.pathsDict;
+    image.classDict = parser.classDict;
     image.viewBox = parser.viewBox;
     image.scale = 1;
     return image;

@@ -60,6 +60,8 @@
     self.xmlParser = [NSXMLParser.alloc initWithData:data];
     self.xmlParser.delegate = self;
     self.paths = NSMutableArray.new;
+    self.pathsDict = NSMutableDictionary.new;
+    self.classDict = NSMutableDictionary.new;
     self.pathFactory = JAMStyledBezierPathFactory.new;
     self.groupLevel = 0;
     self.groupTransforms = NSMutableDictionary.new;
@@ -98,6 +100,19 @@
     }
     JAMStyledBezierPath *path = [self.pathFactory styledPathFromElementName:elementName attributes:attributeDict];
     if (path) {
+        NSString *identifier = attributeDict[@"id"];
+        if (identifier) {
+            self.pathsDict[identifier] = path;
+        }
+        NSString *class = attributeDict[@"class"];
+        if (class) {
+            NSMutableArray *pathsByClass = self.classDict[class];
+            if (!pathsByClass) {
+                pathsByClass = [NSMutableArray array];
+            }
+            [pathsByClass addObject:path];
+            self.classDict[class] = pathsByClass;
+        }
         [self.paths addObject:path];
     }
 }
